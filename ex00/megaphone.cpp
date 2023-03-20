@@ -1,7 +1,6 @@
 #include <iostream>
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
 	int	i;
 	int	j;
 
@@ -12,8 +11,7 @@ int main(int argc, char **argv)
 	i = 1;
 	while (argv[i]) {
 		j = 0;
-		while (argv[i][j])
-		{
+		while (argv[i][j]) {
 			std::cout << (char)std::toupper(argv[i][j]);
 			j++;
 		}
