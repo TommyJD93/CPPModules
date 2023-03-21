@@ -13,6 +13,7 @@ private:
 	std::string	_phone_number;
 public:
 	std::string	read_data(std::string str);
+	std::string	printlen(std::string str);
 	void		get_data(void);
 	void		index(void);
 	void		view(int i);

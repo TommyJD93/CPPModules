@@ -19,19 +19,27 @@ void	phonebook::add(void) {
 }
 
 void	phonebook::display(void) {
-	int	i;
+	int		i;
+	bool	loop;
 
 	i = 0;
+	loop = true;
+	std::cout   << "|--------------Contact Display--------------|\n"
+				<< "|-------------------------------------------|\n"
+				<< "|     Index|First Name| Last Name|  Nickname|\n"
+				<< "|-------------------------------------------|\n";
 	while (i < 8)
 	{
 		this->contact_list[i].view(i);
 		i++;
 	}
-	std::cout << "enter the index of the contact: ";
-	std::cin >> i;
+	do {
+		std::cout << "enter the index of the contact: ";
+		std::cin >> i;
+		if (!(i >= 0 && i <= 7))
+			std::cout << "invalid input" << std::endl;
+		else
+			loop = false;
+	} while	(loop);
 	this->contact_list[i].info(i);
 }
-
-//void	phonebook::search(void) {
-//
-//}
