@@ -1,10 +1,10 @@
-NAME = Account
+NAME = idk
 
 CC = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-FILES = Account.cpp tests.cpp \
+FILES =main.cpp \
 
 OBJ=$(FILES:.cpp=.o)
 

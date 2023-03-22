@@ -1,10 +1,10 @@
-NAME = Account
+NAME = Zombie
 
 CC = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-FILES = Account.cpp tests.cpp \
+FILES = Zombie.cpp main.cpp zombieHorde.cpp \
 
 OBJ=$(FILES:.cpp=.o)
 
