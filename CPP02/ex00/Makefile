@@ -1,10 +1,10 @@
-NAME = reverse
+NAME = idk
 
 CC = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-FILES =main.cpp \
+FILES = main.cpp Fixed.cpp \
 
 OBJ=$(FILES:.cpp=.o)
 

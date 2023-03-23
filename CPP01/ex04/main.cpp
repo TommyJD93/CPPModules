@@ -1,32 +1,43 @@
-#include "replace.hpp"
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
 
-int main(void)
+int main(int argc, char **argv)
 {
     std::string buf;
-    std::string to_find = "come";
-    std::string to_replace = "procodoi";
+    std::string to_find;
+    std::string replace_with;
     std::string new_string;
-    std::string tmp;
-    size_t        pos;
-    size_t       pos_old;
+    std::ifstream in_file;
+    std::size_t pos;
+    std::size_t pos_old;
 
-    std::ifstream myfile; myfile.open("test");
-    if (!(myfile.is_open()))
+    if (argc != 4)
         return (1);
-    myfile >> tmp;
-    cout << tmp << endl;
-    new_string.reserve(buf.size());
-    pos = 0;
-    while (true) {
-        pos_old = pos;
-        pos = buf.find(to_find, pos);
-        if (pos == buf.size() - 1)
-            break ;
-        new_string.append(buf, pos_old, pos - pos_old);
-        new_string += to_replace;
-        pos += to_replace.size();
+    in_file.open(argv[1]);
+    to_find = argv[2];
+    replace_with = argv[3];
+    buf = argv[1];
+    buf.append(".replace");
+    std::ofstream out_file(buf);
+    if (in_file.is_open()) {
+        while (getline(in_file, buf)) {
+            pos = 0;
+            pos_old = 0;
+            new_string.reserve(buf.size() + replace_with.length());
+            while (buf.find(to_find, pos) >= 0 && buf.find(to_find, pos) < buf.length()) {
+                pos = buf.find(to_find, pos);
+                new_string.append(buf, pos_old, pos - pos_old);
+                new_string += replace_with;
+                pos += to_find.length();
+                pos_old = pos;
+            }
+            new_string.append(buf, pos_old, buf.length() - pos_old);
+            out_file << new_string << std::endl;
+            new_string.erase();
+        }
+        in_file.close();
+        out_file.close();
     }
-    new_string.append(buf, pos_old, buf.size() - pos_old);
-    buf.swap(new_string);
-    cout << new_string << endl;
 }

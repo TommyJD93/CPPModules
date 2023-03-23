@@ -40,6 +40,6 @@ void	phonebook::display(void) {
 			std::cout << "invalid input" << std::endl;
 		else
 			loop = false;
-	} while	(loop);
+	} while	(loop && std::cin.good());
 	this->contact_list[i].info(i);
 }
