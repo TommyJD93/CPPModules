@@ -1,7 +1,5 @@
 #include "ClaprTrap.hpp"
 
-
-
 int main(void) {
     std::string buf;
     bool        loop;

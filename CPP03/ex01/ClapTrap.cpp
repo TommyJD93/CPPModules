@@ -1,14 +1,15 @@
-#include "ClaprTrap.hpp"
+#include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(0) {
+ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(10) {
     cout << "ClapTrap " << this->_name << " is ready to fire! *corki noises*" << endl;
 }
 
-ClapTrap::ClapTrap() : _name("Valve"), _hit_points(10),  _energy_points(10), _attack_damage(0) {
-    cout << "ClapTrap " << "Default" << " is ready to fire! *corki noises*" << endl;
+ClapTrap::ClapTrap() : _name("Ochir"), _hit_points(10), _energy_points(10), _attack_damage(10) {
+    cout << "ClapTrap " << this->_name << " is ready to fire! *corki noises*" << endl;
 }
 
 ClapTrap::~ClapTrap() {
+    cout << "ClapTrap " << this->_name << " went to brazil" << endl;
 }
 
 void ClapTrap::attack(const std::string& target) {
@@ -45,6 +46,7 @@ std::string ClapTrap::getName(void) {
 
 void ClapTrap::displayStatus(void)
 {
+    cout << "name: " << this->_name << endl;
     cout << "hp: " << this->_hit_points << endl;
     cout << "energy points: " << this->_energy_points << endl;
     cout << "attack damage: " << this->_attack_damage << "(skill issue)" <<  endl;

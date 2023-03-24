@@ -5,7 +5,7 @@
 using namespace std;
 
 class ClapTrap {
-private:
+protected:
     std::string _name;
     int _hit_points;
     int _energy_points;
@@ -14,13 +14,12 @@ public:
     ClapTrap(std::string name);
     ClapTrap();
     ~ClapTrap();
-    void attack(const std::string& target);
+    virtual void attack(const std::string& target);
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
     int getHitPoints(void);
     std::string getName(void);
     void displayStatus(void);
 };
-
 
 #endif //CPPMODULES_CLAPRTRAP_HPP

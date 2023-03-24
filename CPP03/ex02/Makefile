@@ -1,16 +1,14 @@
-NAME = Fixed
+NAME = ClapTrap
 
 CC = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-FILES = main.cpp Fixed.cpp \
+FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp \
 
 OBJ=$(FILES:.cpp=.o)
 
-HEADER = Account.hpp
-
-%.o:%.cpp $(HEADER)
+%.o:%.cpp
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
