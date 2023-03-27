@@ -10,7 +10,7 @@ std::string DiamondTrap::getName() {
     return (this->_name);
 }
 
-DiamondTrap::DiamondTrap(std::string name) : FragTrap(name), ScavTrap(name), _name(name) {
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_name"), ScavTrap(name), FragTrap(name), _name(name) {
 	cout << "Crazy Diamond da!" << endl;
 }
 
@@ -32,5 +32,5 @@ void DiamondTrap::displayStatus() {
 
 void DiamondTrap::whoAmI(void) {
     cout << "Diamond name: " << this->_name << endl;
-    cout << "ClapTrap name: " << "-undefined-" << endl;
+    cout << "ClapTrap name: " << ClapTrap::_name << endl;
 }

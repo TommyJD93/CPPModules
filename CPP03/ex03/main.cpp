@@ -1,15 +1,17 @@
 #include "DiamondTrap.hpp"
 
 int main(void) {
-	DiamondTrap enemy("_name");
+	DiamondTrap enemy("el muestro");
 
 	cout << "___________________" << endl;
 	cout << "enemy name: " << enemy.getName() << endl;
 
 	cout << "___________________" << endl;
-	enemy.displayStatus();
+    enemy.displayStatus();
 
-//	cout << "___________________" << endl;
+	cout << "___________________" << endl;
+    enemy.whoAmI();
+    cout << "___________________" << endl;
 //	npc.guardGate();
 //
 //	cout << "___________________" << endl;

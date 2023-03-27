@@ -2,7 +2,7 @@
 #define CPPMODULES_SCAVTRAP_HPP
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : virtual public ClapTrap {
 public:
     ScavTrap(std::string name);
     ScavTrap();
