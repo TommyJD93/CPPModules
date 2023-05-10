@@ -1,8 +1,6 @@
 #ifndef CPPMODULES_ZOMBIE_H
 # define CPPMODULES_ZOMBIE_H
-
 #include <iostream>
-using namespace std;
 
 class Zombie {
 private:

@@ -2,7 +2,6 @@
 #define CPPMODULES_FRAGTRAP_HPP
 #include "ClapTrap.hpp"
 
-
 class FragTrap : public ClapTrap {
 public:
     FragTrap(std::string name);

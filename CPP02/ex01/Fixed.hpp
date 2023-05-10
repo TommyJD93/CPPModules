@@ -2,7 +2,6 @@
 #define CPPMODULES_FIXED_HPP
 #include <iostream>
 #include <cmath>
-using namespace std;
 
 class Fixed {
 private:

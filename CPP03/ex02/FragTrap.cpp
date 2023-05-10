@@ -1,6 +1,5 @@
 #include "FragTrap.hpp"
 
-// _name(name), _energy_points(10), _hit_points(10), _attack_damage(10)
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
     cout << "FragTrap " << this->_name << " is ready to fire! *corki noises*" << endl;
     setStats();

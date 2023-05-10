@@ -1,7 +1,6 @@
 #ifndef CPPMODULES_HARL_HPP
 #define CPPMODULES_HARL_HPP
 #include <iostream>
-using namespace std;
 
 class Harl {
 private:

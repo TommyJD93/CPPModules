@@ -1,7 +1,6 @@
 #ifndef CPPMODULES_WEAPON_HPP
 #define CPPMODULES_WEAPON_HPP
 #include <iostream>
-using namespace std;
 
 class Weapon {
 private:

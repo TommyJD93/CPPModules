@@ -1,6 +1,5 @@
 #ifndef CPPMODULES_DIAMONDTRAP_HPP
 #define CPPMODULES_DIAMONDTRAP_HPP
-
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 

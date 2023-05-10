@@ -2,7 +2,6 @@
 #define CPPMODULES_CLAPRTRAP_HPP
 #include <iostream>
 #include <cstring>
-using namespace std;
 
 class ClapTrap {
 protected:

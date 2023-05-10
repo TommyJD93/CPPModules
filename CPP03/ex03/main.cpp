@@ -12,9 +12,7 @@ int main(void) {
 	cout << "___________________" << endl;
     enemy.whoAmI();
     cout << "___________________" << endl;
-//	npc.guardGate();
-//
-//	cout << "___________________" << endl;
-//	npc.attack("Pentagon");
+
+    enemy.
 
 }

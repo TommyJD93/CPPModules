@@ -1,7 +1,6 @@
 #ifndef CPPMODULES_FIXED_HPP
 #define CPPMODULES_FIXED_HPP
 #include <iostream>
-using namespace std;
 
 class Fixed {
 private:

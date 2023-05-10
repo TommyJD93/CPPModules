@@ -1,6 +1,4 @@
 #include "Zombie.hpp"
-using namespace std;
-
 
 int main(void)
 {

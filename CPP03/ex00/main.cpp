@@ -3,7 +3,7 @@
 int main(void) {
     std::string buf;
     bool        loop;
-    ClapTrap   player("Jeffry Bezos");
+    ClapTrap    player("Jeffry Bezos");
 
     loop = true;
     while (loop)

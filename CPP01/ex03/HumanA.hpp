@@ -2,7 +2,6 @@
 #define CPPMODULES_HUMANA_HPP
 #include "Weapon.hpp"
 #include <iostream>
-using namespace std;
 
 class HumanA {
 private:
