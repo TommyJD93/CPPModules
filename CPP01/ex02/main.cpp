@@ -6,11 +6,11 @@ int main(void) {
     std::string *strPTR = &brain;
     std::string &strREF = brain;
 
-    cout << "brain address: " << &brain << endl;
-    cout << "strPTR address: " << &strPTR << endl;
-    cout << "strREF address: " << &strREF << endl;
+	std::cout << "brain address: " << &brain << std::endl;
+	std::cout << "strPTR address: " << &strPTR << std::endl;
+	std::cout << "strREF address: " << &strREF << std::endl;
 
-    cout << "brain value: " << brain << endl;
-    cout << "strPTR value: " << *strPTR << endl;
-    cout << "strREF value: " << strREF << endl;
+	std::cout << "brain value: " << brain << std::endl;
+	std::cout << "strPTR value: " << *strPTR << std::endl;
+	std::cout << "strREF value: " << strREF << std::endl;
 }

@@ -1,8 +1,14 @@
 #include "Harl.hpp"
 
-int main(void)
+int	main(int argc, char **argv)
 {
-    Harl karen;
+    Harl	Harl;
 
-    karen.filter("WARNING");
+    if (argc != 2)
+    {
+        std::cout << "Program arguments error" << std::endl;
+        return (-1);
+    }
+    Harl.filter(argv[1]);
+    return (0);
 }

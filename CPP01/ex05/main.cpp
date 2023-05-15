@@ -5,10 +5,10 @@ int main(void)
     Harl Karen;
 
     Karen.complain("DEBUG");
-    cout << "____________________" << endl;
+    std::cout << "____________________" << std::endl;
     Karen.complain("INFO");
-    cout << "____________________" << endl;
+    std::cout << "____________________" << std::endl;
     Karen.complain("WARNING");
-    cout << "____________________" << endl;
+    std::cout << "____________________" << std::endl;
     Karen.complain("ERROR");
 }

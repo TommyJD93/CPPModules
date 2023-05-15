@@ -1,11 +1,11 @@
 #include "Zombie.hpp"
 
 Zombie::Zombie() {
-    cout << "henlo" << endl;
+    std::cout << "henlo" << std::endl;
 }
 
 Zombie::Zombie(std::string name) {
-    cout << name << " henloo" << endl;
+	std::cout << name << " henloo" << std::endl;
 }
 
 Zombie::~Zombie() {

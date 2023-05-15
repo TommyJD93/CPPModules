@@ -1,4 +1,4 @@
-NAME = reverse
+NAME = replace
 
 CC = c++
 
