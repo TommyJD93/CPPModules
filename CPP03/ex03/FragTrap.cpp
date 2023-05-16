@@ -1,17 +1,17 @@
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
-    cout << "FragTrap " << this->_name << " is ready to fire! *corki noises*" << endl;
+    std::cout << "FragTrap " << this->_name << " is ready to fire! *corki noises*" << std::endl;
     setStats();
 }
 
 FragTrap::FragTrap() : ClapTrap("Bethesda"){
-    cout << "FragTrap " << this->_name << " is ready to fire! *corki noises*" << endl;
+    std::cout << "FragTrap " << this->_name << " is ready to fire! *corki noises*" << std::endl;
     setStats();
 }
 
 FragTrap::~FragTrap() {
-    cout << "FragTrap " << this->_name << " went to mexico" << endl;
+    std::cout << "FragTrap " << this->_name << " went to mexico" << std::endl;
 }
 
 void FragTrap::setStats(void)
@@ -27,15 +27,15 @@ std::string FragTrap::getName(void) {
 
 void FragTrap::attack(const std::string& target) {
     if (this->_energy_points <= 0) {
-        cout << "FragTrap " << this->_name << " ai chenot *punjabi mc starts playing*" << endl;
+        std::cout << "FragTrap " << this->_name << " ai chenot *punjabi mc starts playing*" << std::endl;
         return;
     }
     this->_energy_points--;
-    cout << "FragTrap " << this->_name << " attacks " << target << " causing " << this->_attack_damage << " points of damage!" << endl;
+    std::cout << "FragTrap " << this->_name << " attacks " << target << " causing " << this->_attack_damage << " points of damage!" << std::endl;
 }
 
 void FragTrap::highFivesGuys() {
     std::string dio;
-    cout  << this->_name << " want an high five :D" << endl;
+    std::cout  << this->_name << " want an high five :D" << std::endl;
     getline(std::cin, dio);
 }

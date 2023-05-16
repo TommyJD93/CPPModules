@@ -8,7 +8,7 @@ int main(void) {
     loop = true;
     while (loop)
     {
-        cout  << "enter your move: ";
+        std::cout  << "enter your move: ";
         getline(std::cin, buf);
         if (buf == "exit")
             break ;
@@ -21,9 +21,9 @@ int main(void) {
         else if (buf == "status")
             player.displayStatus();
         else
-            cout << "not available option" << endl;
+            std::cout << "not available option" << std::endl;
         if (player.getHitPoints() <= 0) {
-            cout << "ClapTrap " << player.getName() << " died because you inted :( " << endl;
+            std::cout << "ClapTrap " << player.getName() << " died because you inted :( " << std::endl;
             loop = false;
         }
     }

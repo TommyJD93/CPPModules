@@ -1,17 +1,17 @@
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
-    cout << "ScavTrap " << this->_name << " is ready to fire! *corki noises*" << endl;
+    std::cout << "ScavTrap " << this->_name << " is ready to fire! *corki noises*" << std::endl;
     setStats();
 }
 
 ScavTrap::ScavTrap() : ClapTrap("valve"){
-    cout << "ScavTrap " << this->_name << " is ready to fire! *corki noises*" << endl;
+    std::cout << "ScavTrap " << this->_name << " is ready to fire! *corki noises*" << std::endl;
     setStats();
 }
 
 ScavTrap::~ScavTrap() {
-    cout << "ScavTrap " << this->_name << " went to mexico" << endl;
+    std::cout << "ScavTrap " << this->_name << " went to mexico" << std::endl;
 }
 
 void ScavTrap::setStats(void)
@@ -27,13 +27,13 @@ std::string ScavTrap::getName(void) {
 
 void ScavTrap::attack(const std::string& target) {
     if (this->_energy_points <= 0) {
-        cout << "ScavTrap " << this->_name << " ai chenot *punjabi mc starts playing*" << endl;
+        std::cout << "ScavTrap " << this->_name << " ai chenot *punjabi mc starts playing*" << std::endl;
         return;
     }
     this->_energy_points--;
-    cout << "ScavTrap " << this->_name << " attacks " << target << " causing " << this->_attack_damage << " points of damage!" << endl;
+    std::cout << "ScavTrap " << this->_name << " attacks " << target << " causing " << this->_attack_damage << " points of damage!" << std::endl;
 }
 
 void ScavTrap::guardGate() {
-    cout << "ScavTrap " << this->_name << " is now in Gate keeper(mazzocchi) mode" << endl;
+    std::cout << "ScavTrap " << this->_name << " is now in Gate keeper(mazzocchi) mode" << std::endl;
 }

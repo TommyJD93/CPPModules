@@ -1,11 +1,11 @@
 #include "ClaprTrap.hpp"
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(0) {
-    cout << "ClapTrap " << this->_name << " is ready to fire! *corki noises*" << endl;
+    std::cout << "ClapTrap " << this->_name << " is ready to fire! *corki noises*" << std::endl;
 }
 
 ClapTrap::ClapTrap() : _name("Valve"), _hit_points(10),  _energy_points(10), _attack_damage(0) {
-    cout << "ClapTrap " << "Default" << " is ready to fire! *corki noises*" << endl;
+    std::cout << "ClapTrap " << "Default" << " is ready to fire! *corki noises*" << std::endl;
 }
 
 ClapTrap::~ClapTrap() {
@@ -13,26 +13,26 @@ ClapTrap::~ClapTrap() {
 
 void ClapTrap::attack(const std::string& target) {
     if (this->_energy_points <= 0) {
-        cout << "ClapTrap " << this->_name << " I got no mana" << endl;
+        std::cout << "ClapTrap " << this->_name << " I got no mana" << std::endl;
         return;
     }
     this->_energy_points--;
-    cout << "ClapTrap " << this->_name << " attacks " << target << " causing " << this->_attack_damage << " points of damage!" << endl;
+    std::cout << "ClapTrap " << this->_name << " attacks " << target << " causing " << this->_attack_damage << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
     this->_hit_points -= amount;
-    cout << "ClapTrap " << this->_name << " received " << amount << " points of damage!" << endl;
+    std::cout << "ClapTrap " << this->_name << " received " << amount << " points of damage!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
     if (this->_energy_points <= 0) {
-        cout << "ClapTrap " << this->_name << " I got no mana" << endl;
+        std::cout << "ClapTrap " << this->_name << " I got no mana" << std::endl;
         return;
     }
     this->_energy_points--;
     this->_hit_points += amount;
-    cout << "ClapTrap " << this->_name << " healed " << amount << " hp" << endl;
+    std::cout << "ClapTrap " << this->_name << " healed " << amount << " hp" << std::endl;
 }
 
 int ClapTrap::getHitPoints(void) {
@@ -45,7 +45,7 @@ std::string ClapTrap::getName(void) {
 
 void ClapTrap::displayStatus(void)
 {
-    cout << "hp: " << this->_hit_points << endl;
-    cout << "energy points: " << this->_energy_points << endl;
-    cout << "attack damage: " << this->_attack_damage << "(skill issue)" <<  endl;
+    std::cout << "hp: " << this->_hit_points << std::endl;
+    std::cout << "energy points: " << this->_energy_points << std::endl;
+    std::cout << "attack damage: " << this->_attack_damage << "(skill issue)" << std::endl;
 }

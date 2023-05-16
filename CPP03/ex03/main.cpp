@@ -3,16 +3,13 @@
 int main(void) {
 	DiamondTrap enemy("el muestro");
 
-	cout << "___________________" << endl;
-	cout << "enemy name: " << enemy.getName() << endl;
+	std::cout << "___________________" << std::endl;
+	std::cout << "enemy name: " << enemy.getName() << std::endl;
 
-	cout << "___________________" << endl;
+	std::cout << "___________________" << std::endl;
     enemy.displayStatus();
 
-	cout << "___________________" << endl;
+	std::cout << "___________________" << std::endl;
     enemy.whoAmI();
-    cout << "___________________" << endl;
-
-    enemy.
-
+    std::cout << "___________________" << std::endl;
 }

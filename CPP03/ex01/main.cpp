@@ -6,22 +6,22 @@ int main(void)
     ScavTrap npc;
     std::string buf;
 
-    cout << "___________________" << endl;
-    cout << "ClapTrap name:" << player.getName() << endl;
-    cout << "ScavTrap name:" << npc.getName() << endl;
+    std::cout << "___________________" << std::endl;
+    std::cout << "ClapTrap name:" << player.getName() << std::endl;
+    std::cout << "ScavTrap name:" << npc.getName() << std::endl;
 
-    cout << "___________________" << endl;
+    std::cout << "___________________" << std::endl;
     player.displayStatus();
-    cout << "___________________" << endl;
+    std::cout << "___________________" << std::endl;
     npc.displayStatus();
 
-    cout << "___________________" << endl;
+    std::cout << "___________________" << std::endl;
     npc.guardGate();
-    cout << "___________________" << endl;
+    std::cout << "___________________" << std::endl;
 
     npc.attack("Pentagon");
     player.attack("Pentagon");
-    cout << "___________________" << endl;
+    std::cout << "___________________" << std::endl;
 
 
 }

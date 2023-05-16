@@ -2,31 +2,31 @@
 
 //default constructor
 Fixed::Fixed() : _fixed_point(0) {
-    cout << "Fixed default construct called, initialized with value: 0" << endl;
+    std::cout << "Fixed default construct called, initialized with value: 0" << std::endl;
 }
 
 Fixed::Fixed(const Fixed& copy_fixed) {
-    cout << "Fixed copy construct called" << endl;
+    std::cout << "Fixed copy construct called" << std::endl;
     *this = copy_fixed;
 }
 
 Fixed::~Fixed() {
-    cout << "Fixed deconstruct called" << endl;
+    std::cout << "Fixed deconstruct called" << std::endl;
 }
 
 Fixed& Fixed::operator=(const Fixed& new_fixed) {
-	cout << "Fixed copy assignment operator called" << endl;
+    std::cout << "Fixed copy assignment operator called" << std::endl;
 	_fixed_point = new_fixed.getRawBits();
 	return (*this);
 }
 
 int Fixed::getRawBits() const {
-	cout << "getRawBits member function called" << endl;
+    std::cout << "getRawBits member function called" << std::endl;
 	return (this->_fixed_point);
 }
 
 void Fixed::setRawBits(int const num) {
-	cout << "setRawBits member function called" << endl;
+    std::cout << "setRawBits member function called" << std::endl;
 	this->_fixed_point = num;
 }
 
