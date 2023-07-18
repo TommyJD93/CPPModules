@@ -25,7 +25,7 @@ int Bureaucrat::get_grade() const {
 }
 
 std::ostream& operator<<(std::ostream& out, Bureaucrat const& bureaucrat) {
-	out << bureaucrat.get_name() << ", bureaucrat grade " << bureaucrat.get_grade() << std::endl;
+	out << "[" << bureaucrat.get_name() << "] bureaucrat grade modified, new grade: " << bureaucrat.get_grade() << std::endl;
 	return (out);
 }
 

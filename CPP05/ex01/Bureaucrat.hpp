@@ -9,14 +9,14 @@ private:
 	int _grade;
 public:
 
-	class GradeTooLowException : public std::exception {
+	class BureaucratGradeTooLowException : public std::exception {
 	public:
 		virtual const char *what() const throw() {
 			return ("Bureaucrat: GradeTooLowException");
 		}
 	};
 
-	class GradeTooHighException : public std::exception {
+	class BureaucratGradeTooHighException : public std::exception {
 	public:
 		virtual const char *what() const throw() {
 			return ("Bureaucrat: GradeTooHighException");

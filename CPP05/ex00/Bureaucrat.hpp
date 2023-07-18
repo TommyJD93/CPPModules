@@ -34,7 +34,7 @@ public:
 	void increment_grade(int variation_value);
 
 };
-std::ostream& operator<<(std::ostream& out, Bureaucrat const& bureaucrat);
 
+std::ostream& operator<<(std::ostream& out, Bureaucrat const& bureaucrat);
 
 #endif //CPPMODULES_BUREAUCRAT_HPP
