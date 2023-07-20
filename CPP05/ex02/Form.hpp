@@ -5,7 +5,7 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 private:
 	std::string	_name;
 	bool		_sign;

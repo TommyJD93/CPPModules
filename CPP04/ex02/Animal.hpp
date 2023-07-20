@@ -15,5 +15,4 @@ public:
     virtual std::string getIdea(int idea_nb) = 0;
 };
 
-
 #endif //CPPMODULES_ANIMAL_HPP
