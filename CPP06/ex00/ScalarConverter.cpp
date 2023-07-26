@@ -39,9 +39,39 @@ bool    ScalarConverter::checkLimits(const char *value) {
     return (false);
 }
 
-void ScalarConverter::convert() {
-    checkLimits(this->_input);
+void ScalarConverter::toInt(const char *input) {
+}
 
+void ScalarConverter::toChar(const char *input) {
+}
+
+void ScalarConverter::toFloat(const char *input) {
+}
+
+void ScalarConverter::toDouble(const char *input) {
+}
+
+std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConverter) {
+    out << "char: " << scalarConverter._newCharType << std::endl;
+    out << "int: " << scalarConverter._newIntType << std::endl;
+    out << "float: " << scalarConverter._newFloatType << std::endl;
+    out << "double: " << scalarConverter._newDoubleType << std::endl;
+}
+
+void ScalarConverter::convert() {
+//    ScalarConverter convert[4] = {toInt(), toChar(), toFloat(), toDouble()};
+
+    checkLimits(this->_input);
+//    int type = get_type();
+
+    toInt(_input);
+    _intCheck = true;
+    toChar(_input);
+    _charCheck = true;
+    toFloat(_input);
+    _floatCheck = true;
+    toDouble(_input);
+    _doubleCheck = true;
 }
 
 

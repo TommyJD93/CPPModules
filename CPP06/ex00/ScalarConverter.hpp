@@ -16,7 +16,7 @@ private:
     double      _newDoubleType;
 
     bool        _intCheck;
-    bool        _floatCheck
+    bool        _floatCheck;
     bool        _charCheck;
     bool        _doubleCheck;
 
@@ -43,6 +43,11 @@ private:
             return ("ScalarConverter: ConversionErrorException");
         }
     };
+
+    void toInt(const char *input);
+    void toChar(const char *input);
+    void toFloat(const char *input);
+    void toDouble(const char *input);
 
 public:
     ScalarConverter(const char *val);
