@@ -1,16 +1,16 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter():
+ScalarConverter::ScalarConverter(void):
     _input("0"), _newIntType(0), _newCharType(0), _newFloatType(0.0f),
     _newDoubleType(0.0), _intCheck(false), _floatCheck(false), _charCheck(false),
-    _doubleCheck(false), _isLimitBool(false), _limit(""), _charNotDisplayable(false)
+    _doubleCheck(false), _charNotDisplayable(false), _isLimitBool(false), _limit("")
 {
 }
 
 ScalarConverter::ScalarConverter(const char *val):
     _input(val), _newIntType(0), _newCharType(0), _newFloatType(0.0f),
     _newDoubleType(0.0), _intCheck(false), _floatCheck(false), _charCheck(false),
-    _doubleCheck(false), _isLimitBool(false), _limit(""), _charNotDisplayable(false)
+    _doubleCheck(false), _charNotDisplayable(false), _isLimitBool(false), _limit("")
 {
 }
 
@@ -40,38 +40,53 @@ bool    ScalarConverter::checkLimits(const char *value) {
 }
 
 void ScalarConverter::toInt(const char *input) {
+    std::cout << input << std::endl;
+    return;
 }
 
 void ScalarConverter::toChar(const char *input) {
+    std::cout << input << std::endl;
+    return;
 }
 
 void ScalarConverter::toFloat(const char *input) {
+    std::cout << input << std::endl;
+    return;
 }
 
 void ScalarConverter::toDouble(const char *input) {
+    std::cout << input << std::endl;
+    return;
 }
 
-std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConverter) {
-    out << "char: " << scalarConverter._newCharType << std::endl;
-    out << "int: " << scalarConverter._newIntType << std::endl;
-    out << "float: " << scalarConverter._newFloatType << std::endl;
-    out << "double: " << scalarConverter._newDoubleType << std::endl;
+//std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConverter) {
+//    out << "char: " << scalarConverter._newCharType << std::endl;
+//    out << "int: " << scalarConverter._newIntType << std::endl;
+//    out << "float: " << scalarConverter._newFloatType << std::endl;
+//    out << "double: " << scalarConverter._newDoubleType << std::endl;
+//}
+
+
+int ScalarConverter::_getType(const char *val) {
+    int i = 0;
+//    bool intType = true;
+//    bool nonNumeric = true;
+//    bool floatType = false;
+
+    if (val[0] && val[1] == '\0' && (val[i] < '0' || val[i] > '9')) {
+        std::cout << "caga" << std::endl;
+        return (ScalarConverter::_newCharType);
+    }
+    return (ScalarConverter::_newIntType);
 }
 
 void ScalarConverter::convert() {
-//    ScalarConverter convert[4] = {toInt(), toChar(), toFloat(), toDouble()};
+    convFunction convert[4] = {&ScalarConverter::toInt, &ScalarConverter::toChar, &ScalarConverter::toFloat, &ScalarConverter::toDouble};
 
     checkLimits(this->_input);
-//    int type = get_type();
-
-    toInt(_input);
-    _intCheck = true;
-    toChar(_input);
-    _charCheck = true;
-    toFloat(_input);
-    _floatCheck = true;
-    toDouble(_input);
-    _doubleCheck = true;
+    int type = _getType(this->_input);
+    std::cout << "type: " << type << std::endl;
+    (void)convert[0];
 }
 
 

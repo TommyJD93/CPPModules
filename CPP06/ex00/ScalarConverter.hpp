@@ -1,5 +1,6 @@
-#ifndef CPPMODULES_SCALARCONVERTER_HPP
-#define CPPMODULES_SCALARCONVERTER_HPP
+#ifndef SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
+
 # include <iostream>
 # include <cstdlib>
 # include <cerrno>
@@ -8,7 +9,7 @@
 
 class ScalarConverter {
 private:
-    char        *_input;
+    const char        *_input;
 
     int         _newIntType;
     char        _newCharType;
@@ -22,7 +23,7 @@ private:
 
     bool        _charNotDisplayable;
     bool        _outOfRange;
-    int			_isLimitBool;
+    int         _isLimitBool;
     std::string _limit;
 
     void        _intConversion(const char *val);
@@ -31,11 +32,8 @@ private:
     void        _charConversion(const char *val);
 
     bool        _isLimit(const char *val);
-    bool        _getType(const char *val);
+    int        _getType(const char *val);
 
-    ScalarConverter();
-    ScalarConverter(const ScalarConverter &scalarConverter);
-    ScalarConverter &operator=(const ScalarConverter &scalarConverter);
 
     class ConversionErrorExcpetion : public std::exception {
     public:
@@ -49,11 +47,17 @@ private:
     void toFloat(const char *input);
     void toDouble(const char *input);
 
+    bool checkLimits(const char *value);
+
 public:
+    ScalarConverter(void);
+    ScalarConverter(const ScalarConverter &scalarConverter);
+//    ScalarConverter &operator=(const ScalarConverter &scalarConverter);
     ScalarConverter(const char *val);
     ~ScalarConverter();
     void convert();
 };
-ScalarConverter &operator<<(const ScalarConverter &scalarConverter);
+typedef void (ScalarConverter::*convFunction)(const char *);
+//std::ostream &operator<<(const std::ostream &out, const ScalarConverter &scalarConverter);
 
-#endif //CPPMODULES_SCALARCONVERTER_HPP
+#endif //SCALARCONVERTER_HPP
