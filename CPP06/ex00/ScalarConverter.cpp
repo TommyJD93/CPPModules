@@ -76,7 +76,6 @@ std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConvert
 /**
  * Conversion utils functions
  */
-
 bool    ScalarConverter::_checkLimits(const char *value) {
     const std::string cases[4] = {"inf", "+inf", "-inf", "nan"};
 
@@ -132,36 +131,59 @@ int ScalarConverter::_getType(const char *val) {
 /**
  * Conversion functions
  */
-void ScalarConverter::_toInt(const char *input) {
-    std::cout << input << std::endl;
-    return;
+void ScalarConverter::_fromInt(const char *input) {
+    /*int conv*/
+    _intCheck = true;
+    /*char conv*/
+    _charCheck = true;
+    /*float conv*/
+    _floatCheck = true;
+    /*double conv*/
+    _doubleCheck = true;
 }
 
-void ScalarConverter::_toChar(const char *input) {
-    std::cout << input << std::endl;
-    return;
+void ScalarConverter::_fromChar(const char *input) {
+    /*int conv*/
+    _intCheck = true;
+    /*char conv*/
+    _charCheck = true;
+    /*float conv*/
+    _floatCheck = true;
+    /*double conv*/
+    _doubleCheck = true;
 }
 
-void ScalarConverter::_toFloat(const char *input) {
-    std::cout << input << std::endl;
-    return;
+void ScalarConverter::_fromFloat(const char *input) {
+    /*int conv*/
+    _intCheck = true;
+    /*char conv*/
+    _charCheck = true;
+    /*float conv*/
+    _floatCheck = true;
+    /*double conv*/
+    _doubleCheck = true;
 }
 
-void ScalarConverter::_toDouble(const char *input) {
-    std::cout << input << std::endl;
-    return;
+void ScalarConverter::_fromDouble(const char *input) {
+    /*int conv*/
+    _intCheck = true;
+    /*char conv*/
+    _charCheck = true;
+    /*float conv*/
+    _floatCheck = true;
+    /*double conv*/
+    _doubleCheck = true;
 }
 
 void ScalarConverter::convert() {
-    convFunction convert[4] = {&ScalarConverter::_toInt, &ScalarConverter::_toChar, &ScalarConverter::_toFloat, &ScalarConverter::_toDouble};
+    convFunction convert[4] = {&ScalarConverter::_fromInt, &ScalarConverter::_fromChar, &ScalarConverter::_fromFloat, &ScalarConverter::_fromDouble};
 
     _checkLimits(this->_input);
     int type = _getType(this->_input);
     if (type == ScalarConverter::nonScalarType)
         throw ConversionErrorExcpetion();
-    convert[type]
     std::cout << "type: " << type << std::endl;
-    (void)convert[0];
+    convert[type];
 }
 
 

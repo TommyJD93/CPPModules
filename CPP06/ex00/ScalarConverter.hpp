@@ -42,10 +42,10 @@ private:
         }
     };
 
-    void        _toInt(const char *input);
-    void        _toChar(const char *input);
-    void        _toFloat(const char *input);
-    void        _toDouble(const char *input);
+    void        _fromInt(const char *input);
+    void        _fromChar(const char *input);
+    void        _fromFloat(const char *input);
+    void        _fromDouble(const char *input);
 
     bool        _checkLimits(const char *value);
 
