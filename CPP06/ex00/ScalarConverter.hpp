@@ -51,16 +51,16 @@ private:
 
     ScalarConverter(const ScalarConverter &scalarConverter);
     ScalarConverter(void);
-public:
     ScalarConverter &operator=(const ScalarConverter &scalarConverter);
+public:
     ScalarConverter(const char *val);
     ~ScalarConverter();
     void convert();
 
-    void getIntType(std::ostream &out);
-    void getCharType(std::ostream &out);
-    void getFloatType(std::ostream &out);
-    void getDoubleType(std::ostream &out);
+    void printIntType(std::ostream &out);
+    void printCharType(std::ostream &out);
+    void printFloatType(std::ostream &out);
+    void printDoubleType(std::ostream &out);
 
     static const int   intType = 0;
     static const int   charType = 1;

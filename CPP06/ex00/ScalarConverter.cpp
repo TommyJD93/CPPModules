@@ -63,14 +63,14 @@ void ScalarConverter::printDoubleType(std::ostream &out) {
 /**
  * Operators
  */
-ScalarConverter &operator=(const ScalarConverter &scalarConverter) {
-    void(this);
-    *this = scalarConverter;
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &scalarConverter) {
+    (void)scalarConverter;
+    return (*this);
 }
 
 std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConverter) {
 
-
+    return (out);
 }
 
 /**
@@ -119,7 +119,7 @@ int ScalarConverter::_getType(const char *val) {
         i++;
         floatType = true;
     }
-    if (val[i] || nonNumeri(intType && floatType))
+    if (val[i] || nonNumeric || (intType && floatType))
         return (ScalarConverter::nonScalarType);
     if (floatType)
         return (ScalarConverter::floatType);
@@ -183,7 +183,7 @@ void ScalarConverter::convert() {
     if (type == ScalarConverter::nonScalarType)
         throw ConversionErrorExcpetion();
     std::cout << "type: " << type << std::endl;
-    convert[type];
+    (this->*convert[type])(_input);
 }
 
 
