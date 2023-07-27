@@ -9,7 +9,7 @@
 
 class ScalarConverter {
 private:
-    const char        *_input;
+    const char  *_input;
 
     int         _newIntType;
     char        _newCharType;
@@ -32,7 +32,7 @@ private:
     void        _charConversion(const char *val);
 
     bool        _isLimit(const char *val);
-    int        _getType(const char *val);
+    int         _getType(const char *val);
 
 
     class ConversionErrorExcpetion : public std::exception {
@@ -42,20 +42,31 @@ private:
         }
     };
 
-    void toInt(const char *input);
-    void toChar(const char *input);
-    void toFloat(const char *input);
-    void toDouble(const char *input);
+    void        _toInt(const char *input);
+    void        _toChar(const char *input);
+    void        _toFloat(const char *input);
+    void        _toDouble(const char *input);
 
-    bool checkLimits(const char *value);
+    bool        _checkLimits(const char *value);
 
-public:
-    ScalarConverter(void);
     ScalarConverter(const ScalarConverter &scalarConverter);
-//    ScalarConverter &operator=(const ScalarConverter &scalarConverter);
+    ScalarConverter(void);
+public:
+    ScalarConverter &operator=(const ScalarConverter &scalarConverter);
     ScalarConverter(const char *val);
     ~ScalarConverter();
     void convert();
+
+    void getIntType(std::ostream &out);
+    void getCharType(std::ostream &out);
+    void getFloatType(std::ostream &out);
+    void getDoubleType(std::ostream &out);
+
+    static const int   intType = 0;
+    static const int   charType = 1;
+    static const int   floatType = 2;
+    static const int   doubleType = 3;
+    static const int   nonScalarType = 4;
 };
 typedef void (ScalarConverter::*convFunction)(const char *);
 //std::ostream &operator<<(const std::ostream &out, const ScalarConverter &scalarConverter);

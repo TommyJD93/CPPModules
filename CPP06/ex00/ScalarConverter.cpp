@@ -1,5 +1,7 @@
 #include "ScalarConverter.hpp"
-
+/**
+ * Constructors
+ */
 ScalarConverter::ScalarConverter(void):
     _input("0"), _newIntType(0), _newCharType(0), _newFloatType(0.0f),
     _newDoubleType(0.0), _intCheck(false), _floatCheck(false), _charCheck(false),
@@ -22,7 +24,60 @@ ScalarConverter::~ScalarConverter() {
 
 }
 
-bool    ScalarConverter::checkLimits(const char *value) {
+/**
+ * Print utils for Operator<<
+ */
+void ScalarConverter::printIntType(std::ostream &out) {
+    if (!_intCheck) {
+        out << "impossible conversion";
+        return ;
+    }
+    out << this->_newIntType;
+}
+
+void ScalarConverter::printCharType(std::ostream &out) {
+    if (!_charCheck) {
+        out << "impossible conversion";
+        return ;
+    }
+    out << this->_newCharType;
+}
+
+void ScalarConverter::printFloatType(std::ostream &out) {
+    if (!_floatCheck) {
+        out << "impossible conversion";
+        return ;
+    }
+    out << this->_newFloatType;
+}
+
+void ScalarConverter::printDoubleType(std::ostream &out) {
+    if (!_doubleCheck) {
+        out << "impossible conversion";
+        return ;
+    }
+    out << this->_newDoubleType;
+
+}
+
+/**
+ * Operators
+ */
+ScalarConverter &operator=(const ScalarConverter &scalarConverter) {
+    void(this);
+    *this = scalarConverter;
+}
+
+std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConverter) {
+
+
+}
+
+/**
+ * Conversion utils functions
+ */
+
+bool    ScalarConverter::_checkLimits(const char *value) {
     const std::string cases[4] = {"inf", "+inf", "-inf", "nan"};
 
     for (int i = 0; i < 4; i++) {
@@ -39,52 +94,72 @@ bool    ScalarConverter::checkLimits(const char *value) {
     return (false);
 }
 
-void ScalarConverter::toInt(const char *input) {
-    std::cout << input << std::endl;
-    return;
-}
-
-void ScalarConverter::toChar(const char *input) {
-    std::cout << input << std::endl;
-    return;
-}
-
-void ScalarConverter::toFloat(const char *input) {
-    std::cout << input << std::endl;
-    return;
-}
-
-void ScalarConverter::toDouble(const char *input) {
-    std::cout << input << std::endl;
-    return;
-}
-
-//std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConverter) {
-//    out << "char: " << scalarConverter._newCharType << std::endl;
-//    out << "int: " << scalarConverter._newIntType << std::endl;
-//    out << "float: " << scalarConverter._newFloatType << std::endl;
-//    out << "double: " << scalarConverter._newDoubleType << std::endl;
-//}
-
-
 int ScalarConverter::_getType(const char *val) {
     int i = 0;
-//    bool intType = true;
-//    bool nonNumeric = true;
-//    bool floatType = false;
+    bool intType = true;
+    bool nonNumeric = true;
+    bool floatType = false;
 
-    if (val[0] && val[1] == '\0' && (val[i] < '0' || val[i] > '9')) {
-        std::cout << "caga" << std::endl;
-        return (ScalarConverter::_newCharType);
+    if (val[0] && val[1] == '\0' && (val[i] < '0' || val[i] > '9'))
+        return (ScalarConverter::charType);
+    if (val[i] == '-' || val[i] == '+')
+        i++;
+    while (val[i] && (val[i] >= '0' && val[i] <= '9')) {
+        i++;
+        nonNumeric = false;
     }
-    return (ScalarConverter::_newIntType);
+    if (val[i] == '.') {
+        i++;
+        intType = false;
+        while (val[i] && (val[i] >= '0' && val[i] <= '9')) {
+            i++;
+            nonNumeric = false;
+        }
+    }
+    if (val[i] == 'f') {
+        i++;
+        floatType = true;
+    }
+    if (val[i] || nonNumeri(intType && floatType))
+        return (ScalarConverter::nonScalarType);
+    if (floatType)
+        return (ScalarConverter::floatType);
+    if (intType)
+        return (ScalarConverter::intType);
+    return (ScalarConverter::doubleType);
+}
+
+/**
+ * Conversion functions
+ */
+void ScalarConverter::_toInt(const char *input) {
+    std::cout << input << std::endl;
+    return;
+}
+
+void ScalarConverter::_toChar(const char *input) {
+    std::cout << input << std::endl;
+    return;
+}
+
+void ScalarConverter::_toFloat(const char *input) {
+    std::cout << input << std::endl;
+    return;
+}
+
+void ScalarConverter::_toDouble(const char *input) {
+    std::cout << input << std::endl;
+    return;
 }
 
 void ScalarConverter::convert() {
-    convFunction convert[4] = {&ScalarConverter::toInt, &ScalarConverter::toChar, &ScalarConverter::toFloat, &ScalarConverter::toDouble};
+    convFunction convert[4] = {&ScalarConverter::_toInt, &ScalarConverter::_toChar, &ScalarConverter::_toFloat, &ScalarConverter::_toDouble};
 
-    checkLimits(this->_input);
+    _checkLimits(this->_input);
     int type = _getType(this->_input);
+    if (type == ScalarConverter::nonScalarType)
+        throw ConversionErrorExcpetion();
+    convert[type]
     std::cout << "type: " << type << std::endl;
     (void)convert[0];
 }
