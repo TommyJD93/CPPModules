@@ -69,7 +69,7 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &scalarConvert
 }
 
 std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConverter) {
-
+    out << "[debug] warning silence" << scalarConverter.intType << std::endl;
     return (out);
 }
 
@@ -132,28 +132,38 @@ int ScalarConverter::_getType(const char *val) {
  * Conversion functions
  */
 void ScalarConverter::_fromInt(const char *input) {
-    /*int conv*/
+
+    if ((strlen(input) == 10 && !strcmp(input, "2147483647"))
+        || (strlen(input) == 11 && !strcmp(input, "-2147483648"))
+        || (strlen(input) == 11 && !strcmp(input, "+2147483647"))) {
+        _outOfRange = true;
+        return;
+    }
+    _newIntType = atoi(input);
     _intCheck = true;
-    /*char conv*/
+
+    /*char checks*/
     _charCheck = true;
-    /*float conv*/
+    _newFloatType = static_cast<float>(_newIntType);
     _floatCheck = true;
-    /*double conv*/
+    _newDoubleType = static_cast<float>(_newIntType);
     _doubleCheck = true;
 }
 
 void ScalarConverter::_fromChar(const char *input) {
-    /*int conv*/
-    _intCheck = true;
-    /*char conv*/
+    _newCharType = input[0];
     _charCheck = true;
-    /*float conv*/
+    _newIntType = static_cast<int>(_newCharType);
+    _intCheck = true;
+    _newFloatType = static_cast<float>(_newCharType);
     _floatCheck = true;
-    /*double conv*/
+    _newDoubleType = static_cast<double>(_newCharType);
     _doubleCheck = true;
 }
 
 void ScalarConverter::_fromFloat(const char *input) {
+    if (!input[0])
+        return;
     /*int conv*/
     _intCheck = true;
     /*char conv*/
@@ -165,6 +175,8 @@ void ScalarConverter::_fromFloat(const char *input) {
 }
 
 void ScalarConverter::_fromDouble(const char *input) {
+    if (!input[0])
+        return;
     /*int conv*/
     _intCheck = true;
     /*char conv*/
@@ -176,13 +188,18 @@ void ScalarConverter::_fromDouble(const char *input) {
 }
 
 void ScalarConverter::convert() {
-    convFunction convert[4] = {&ScalarConverter::_fromInt, &ScalarConverter::_fromChar, &ScalarConverter::_fromFloat, &ScalarConverter::_fromDouble};
+    convFunction convert[4] = {&ScalarConverter::_fromChar, &ScalarConverter::_fromInt, &ScalarConverter::_fromFloat, &ScalarConverter::_fromDouble};
 
     _checkLimits(this->_input);
     int type = _getType(this->_input);
-    if (type == ScalarConverter::nonScalarType)
-        throw ConversionErrorExcpetion();
-    std::cout << "type: " << type << std::endl;
+    try {
+        if (type == ScalarConverter::nonScalarType)
+            throw ConversionErrorExcpetion();
+    } catch (const std::exception &exception) {
+        std::cout << exception.what() << std::endl;
+        exit(0);
+    }
+    std::cout << "[debug] type: " << type << std::endl;
     (this->*convert[type])(_input);
 }
 

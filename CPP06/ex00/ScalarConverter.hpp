@@ -62,8 +62,8 @@ public:
     void printFloatType(std::ostream &out);
     void printDoubleType(std::ostream &out);
 
-    static const int   intType = 0;
-    static const int   charType = 1;
+    static const int   charType = 0;
+    static const int   intType = 1;
     static const int   floatType = 2;
     static const int   doubleType = 3;
     static const int   nonScalarType = 4;
