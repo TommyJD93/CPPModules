@@ -10,7 +10,7 @@ OBJ=$(FILES:.cpp=.o)
 
 HEADER = whatever.hpp
 
-%.o:%.cpp #$(HEADER)
+%.o:%.cpp $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)

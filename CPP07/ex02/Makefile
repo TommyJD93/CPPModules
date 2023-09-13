@@ -4,13 +4,13 @@ CC = c++
 
 FLAGS = -std=c++98 -Wall -Wextra -Werror
 
-FILES = main.cpp \
+FILES = main.cpp array.cpp\
 
 OBJ=$(FILES:.cpp=.o)
 
-HEADER = iter.hpp
+HEADER = array.hpp
 
-%.o:%.cpp #$(HEADER)
+%.o:%.cpp $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)

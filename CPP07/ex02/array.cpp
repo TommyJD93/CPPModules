@@ -1,4 +1,4 @@
-#include "Array.hpp"
+#include "array.hpp"
 
 /**
  * Constructors and destructor
