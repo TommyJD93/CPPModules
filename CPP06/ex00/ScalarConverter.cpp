@@ -27,37 +27,53 @@ ScalarConverter::~ScalarConverter() {
 /**
  * Print utils for Operator<<
  */
-void ScalarConverter::printIntType(std::ostream &out) {
+void ScalarConverter::printIntType(std::ostream &out) const {
+    out << "int: ";
     if (!_intCheck) {
-        out << "impossible conversion";
+        out << "impossible" << std::endl;
         return ;
     }
-    out << this->_newIntType;
+    out << this->_newIntType << std::endl;
 }
 
-void ScalarConverter::printCharType(std::ostream &out) {
+void ScalarConverter::printCharType(std::ostream &out) const {
+    out << "char: ";
     if (!_charCheck) {
-        out << "impossible conversion";
+        out << "impossible" << std::endl;
         return ;
     }
-    out << this->_newCharType;
+    if (this->_newCharType > 31 && this->_newCharType < 127)
+        out << "'" << this->_newCharType << "'" << std::endl;
+    else
+        out << "non displayable" << std::endl;
 }
 
-void ScalarConverter::printFloatType(std::ostream &out) {
+void ScalarConverter::printFloatType(std::ostream &out) const {
+    out << "float: ";
     if (!_floatCheck) {
-        out << "impossible conversion";
+        out << "impossible conversion" << std::endl;
         return ;
     }
-    out << this->_newFloatType;
+    if (_isLimitBool) {
+        out << this->_limit << "f" << std::endl;
+    } else {
+        out.precision(1);
+        out << std::fixed << this->_newFloatType << "f" << std::endl;
+    }
 }
 
-void ScalarConverter::printDoubleType(std::ostream &out) {
+void ScalarConverter::printDoubleType(std::ostream &out) const {
+    out << "double: ";
     if (!_doubleCheck) {
-        out << "impossible conversion";
+        out << "impossible" << std::endl;
         return ;
     }
-    out << this->_newDoubleType;
-
+    if (_isLimitBool) {
+        out << this->_limit << std::endl;
+    } else {
+        out.precision(1);
+        out << std::fixed << this->_newDoubleType << std::endl;
+    }
 }
 
 /**
@@ -69,13 +85,34 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &scalarConvert
 }
 
 std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConverter) {
-    out << "[debug] warning silence" << scalarConverter.intType << std::endl;
+    if (scalarConverter.getOutOfRange()) {
+        out << "values out of range" << std::endl;
+        return (out);
+    }
+    if (scalarConverter.getCharNotDisplayable()) {
+        out << "input format error" << std::endl;
+        return (out);
+    }
+    scalarConverter.printCharType(out);
+    scalarConverter.printIntType(out);
+    scalarConverter.printFloatType(out);
+    scalarConverter.printDoubleType(out);
     return (out);
 }
 
 /**
  * Conversion utils functions
  */
+bool ScalarConverter::OutOfRange(int type, double dVal) {
+    if (type == ScalarConverter::charType)
+        return (dVal < 0 || dVal > std::numeric_limits<char>::max());
+    if (type == ScalarConverter::intType)
+        return (dVal < std::numeric_limits<int>::min() || dVal > std::numeric_limits<int>::max());
+    if (type == ScalarConverter::floatType)
+        return (dVal < -std::numeric_limits<float>::min() || dVal > std::numeric_limits<float>::max());
+    return (true);
+}
+
 bool    ScalarConverter::_checkLimits(const char *value) {
     const std::string cases[4] = {"inf", "+inf", "-inf", "nan"};
 
@@ -132,7 +169,6 @@ int ScalarConverter::_getType(const char *val) {
  * Conversion functions
  */
 void ScalarConverter::_fromInt(const char *input) {
-
     if ((strlen(input) == 10 && !strcmp(input, "2147483647"))
         || (strlen(input) == 11 && !strcmp(input, "-2147483648"))
         || (strlen(input) == 11 && !strcmp(input, "+2147483647"))) {
@@ -141,13 +177,14 @@ void ScalarConverter::_fromInt(const char *input) {
     }
     _newIntType = atoi(input);
     _intCheck = true;
-
-    /*char checks*/
-    _charCheck = true;
     _newFloatType = static_cast<float>(_newIntType);
     _floatCheck = true;
     _newDoubleType = static_cast<float>(_newIntType);
     _doubleCheck = true;
+    if (!OutOfRange(ScalarConverter::_newCharType, _newDoubleType)) {
+        _newCharType = static_cast<char>(_newIntType);
+        _charCheck = true;
+    }
 }
 
 void ScalarConverter::_fromChar(const char *input) {
@@ -162,46 +199,76 @@ void ScalarConverter::_fromChar(const char *input) {
 }
 
 void ScalarConverter::_fromFloat(const char *input) {
-    if (!input[0])
+    char *end = NULL;
+
+    _newFloatType = std::strtof(input, &end);
+    if (input == end) {
+        _charNotDisplayable = true;
         return;
-    /*int conv*/
-    _intCheck = true;
-    /*char conv*/
-    _charCheck = true;
-    /*float conv*/
+    }
+    if (errno == ERANGE) {
+        _outOfRange = true;
+        return;
+    }
     _floatCheck = true;
-    /*double conv*/
+    _newDoubleType = static_cast<double>(_newFloatType);
     _doubleCheck = true;
+    if (!OutOfRange(ScalarConverter::intType, _newDoubleType)) {
+        _newIntType = static_cast<int>(_newDoubleType);
+        _intCheck = true;
+    }
+    if (!OutOfRange(ScalarConverter::charType, _newDoubleType)) {
+        _newCharType = static_cast<char>(_newFloatType);
+        _charCheck = true;
+    }
 }
 
 void ScalarConverter::_fromDouble(const char *input) {
-    if (!input[0])
+    char *end = NULL;
+
+    _newDoubleType = std::strtod(input, &end);
+    if (input == end) {
+        _charNotDisplayable = true;
         return;
-    /*int conv*/
-    _intCheck = true;
-    /*char conv*/
-    _charCheck = true;
-    /*float conv*/
-    _floatCheck = true;
-    /*double conv*/
+    }
+    if (errno == ERANGE) {
+        _outOfRange = true;
+        return;
+    }
     _doubleCheck = true;
+    _newFloatType = static_cast<float>(_newDoubleType);
+    _floatCheck = true;
+    if (!OutOfRange(ScalarConverter::intType, _newDoubleType)) {
+        _newIntType = static_cast<int>(_newDoubleType);
+        _intCheck = true;
+    }
+    if (!OutOfRange(ScalarConverter::charType, _newDoubleType)) {
+        _newCharType = static_cast<char>(_newDoubleType);
+        _charCheck = true;
+    }
 }
 
 void ScalarConverter::convert() {
     convFunction convert[4] = {&ScalarConverter::_fromChar, &ScalarConverter::_fromInt, &ScalarConverter::_fromFloat, &ScalarConverter::_fromDouble};
 
-    _checkLimits(this->_input);
+    if (_checkLimits(this->_input))
+        return;
     int type = _getType(this->_input);
-    try {
-        if (type == ScalarConverter::nonScalarType)
-            throw ConversionErrorExcpetion();
-    } catch (const std::exception &exception) {
-        std::cout << exception.what() << std::endl;
-        exit(0);
-    }
     std::cout << "[debug] type: " << type << std::endl;
-    (this->*convert[type])(_input);
+    if(type == ScalarConverter::nonScalarType)
+        this->_charNotDisplayable = true;
+    else
+        (this->*convert[type])(_input);
 }
 
+/**
+* getters
+*/
 
+bool    ScalarConverter::getCharNotDisplayable(void) const {
+    return (this->_charNotDisplayable);
+}
 
+bool    ScalarConverter::getOutOfRange(void) const {
+    return (this->_outOfRange);
+}

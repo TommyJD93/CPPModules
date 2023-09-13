@@ -21,9 +21,9 @@ void ScavTrap::setStats(void)
     this->_attack_damage = 20;
 }
 
-std::string ScavTrap::getName(void) {
-    return (this->_name);
-}
+//std::string ScavTrap::getName(void) {
+//    return (this->_name);
+//}
 
 void ScavTrap::attack(const std::string& target) {
     if (this->_energy_points <= 0) {

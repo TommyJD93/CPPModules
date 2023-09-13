@@ -57,10 +57,14 @@ public:
     ~ScalarConverter();
     void convert();
 
-    void printIntType(std::ostream &out);
-    void printCharType(std::ostream &out);
-    void printFloatType(std::ostream &out);
-    void printDoubleType(std::ostream &out);
+    bool        getOutOfRange(void) const;
+    bool        getCharNotDisplayable(void) const;
+
+    bool        OutOfRange(int type, double dVal);
+    void        printIntType(std::ostream &out) const;
+    void        printCharType(std::ostream &out) const;
+    void        printFloatType(std::ostream &out) const;
+    void        printDoubleType(std::ostream &out) const;
 
     static const int   charType = 0;
     static const int   intType = 1;
@@ -69,6 +73,6 @@ public:
     static const int   nonScalarType = 4;
 };
 typedef void (ScalarConverter::*convFunction)(const char *);
-//std::ostream &operator<<(const std::ostream &out, const ScalarConverter &scalarConverter);
+std::ostream &operator<<(std::ostream &out, const ScalarConverter &scalarConverter);
 
 #endif //SCALARCONVERTER_HPP

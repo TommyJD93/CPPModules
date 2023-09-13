@@ -7,6 +7,6 @@ int main(int argc, char **argv) {
     ScalarConverter converter(argv[1]);
 
     converter.convert();
-//    std::cout << converter << std::endl;
+    std::cout << converter;
     return (0);
 }
