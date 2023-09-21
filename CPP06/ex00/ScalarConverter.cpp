@@ -5,14 +5,14 @@
 ScalarConverter::ScalarConverter(void):
     _input("0"), _newIntType(0), _newCharType(0), _newFloatType(0.0f),
     _newDoubleType(0.0), _intCheck(false), _floatCheck(false), _charCheck(false),
-    _doubleCheck(false), _charNotDisplayable(false), _isLimitBool(false), _limit("")
+    _doubleCheck(false), _charNotDisplayable(false), _outOfRange(false), _isLimitBool(false), _limit("")
 {
 }
 
 ScalarConverter::ScalarConverter(const char *val):
     _input(val), _newIntType(0), _newCharType(0), _newFloatType(0.0f),
     _newDoubleType(0.0), _intCheck(false), _floatCheck(false), _charCheck(false),
-    _doubleCheck(false), _charNotDisplayable(false), _isLimitBool(false), _limit("")
+    _doubleCheck(false), _charNotDisplayable(false), _outOfRange(false), _isLimitBool(false), _limit("")
 {
 }
 
@@ -140,7 +140,7 @@ int ScalarConverter::_getType(const char *val) {
         return (ScalarConverter::charType);
     if (val[i] == '-' || val[i] == '+')
         i++;
-    while (val[i] && (val[i] >= '0' && val[i] <= '9')) {
+    while (val[i] && (val[i] => '0' && val[i] <= '9')) {
         i++;
         nonNumeric = false;
     }

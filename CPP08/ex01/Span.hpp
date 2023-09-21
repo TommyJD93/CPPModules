@@ -20,6 +20,12 @@ public:
     int     shortestSpan();
     int     longestSpan();
     Span &operator=(const Span &span);
+	class ArrayOutOfRange: public std::exception {
+	public:
+		virtual const char *what() const throw(){
+			return("ArrayOutOfRange");
+		}
+	};
 };
 
 

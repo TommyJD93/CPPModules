@@ -20,8 +20,8 @@ Span::~Span() {}
 */
 
 void Span::addNumber(int n) {
-//    if (this->_vector.size() == this->_size)
-        //exception
+    if (this->_vector.size() == this->_size)
+		throw ArrayOutOfRange();
     this->_vector.push_back(n);
 }
 
@@ -29,7 +29,7 @@ void Span::addManyNumbers(std::vector<int> nums) {
     size_t i = -1;
 
     if ((this->_vector.size() + nums.size()) > this->_size)
-        //exception
+		throw ArrayOutOfRange();
     while (++i < nums.size())
         addNumber(nums[i]);
 }
