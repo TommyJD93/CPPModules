@@ -27,7 +27,12 @@ public:
 
     int opSelect(char c);
     int solve();
-
+    class NumDividedByZeroException : public std::exception {
+    public:
+        virtual const char *what() const throw() {
+            return ("NumDividedByZeroException");
+        }
+    };
 };
 typedef int (RPN::*opFunctions) (int a1, int a2);
 
