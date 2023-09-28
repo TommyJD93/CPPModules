@@ -9,6 +9,8 @@
 # include <sstream>
 # include <cctype>
 # include <algorithm>
+# include <cstring>
+
 
 class BitcoinExchange
 {
@@ -31,7 +33,7 @@ public:
     void read_map();
     void compare_dates(char **argv);
     std::string space_removal(std::string word);
-    void check(std::string content);
+    int check(std::string content);
     void find_date(std::string date);
 };
 
