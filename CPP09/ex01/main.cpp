@@ -36,4 +36,7 @@ int main(int argc, char **argv) {
     {
         std::cerr << e.what() << std::endl;
     }
+    RPN exp = RPN(argv[1]);
+
+    exp.solve();
 }

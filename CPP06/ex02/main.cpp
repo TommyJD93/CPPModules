@@ -58,5 +58,5 @@ int main() {
     std::cout << "ptr identifier: " << std::endl;
     identify(base);
     std::cout << "addr identifier: " << std::endl;
-    identify(base);
+    identify(*base);
 }

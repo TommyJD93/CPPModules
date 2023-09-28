@@ -1,5 +1,4 @@
-
-NAME = Serializer
+NAME = Identify
 
 CC = c++
 
