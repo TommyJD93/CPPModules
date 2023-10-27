@@ -44,7 +44,7 @@ void Bureaucrat::increment_grade(int variation_value) {
 	this->_grade -= variation_value;
 }
 
-void Bureaucrat::singForm(Form &Form) {
+void Bureaucrat::singForm(AForm &Form) {
     try {
         Form.beSigned(*this);
         std::cout << "Bureaucrat " << _name << " signed form: " << Form.get_name() << std::endl;

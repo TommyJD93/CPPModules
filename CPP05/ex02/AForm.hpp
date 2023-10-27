@@ -42,6 +42,7 @@ public:
 
 	AForm();
 	AForm(std::string name, const int req_grade_sign, const int req_grade_exec);
+    AForm& operator=(const AForm&);
     AForm(const AForm &AForm);
 	virtual ~AForm();
 
@@ -51,10 +52,10 @@ public:
     int get_grade_exec(void);
     void beSigned(Bureaucrat &bureaucrat);
 
-    void permissionCheck(const Bureaucrat &bureaucrat);
+    void permissionCheck(const Bureaucrat &bureaucrat) const;
     virtual void execute(const Bureaucrat &bureaucrat) const = 0;
 };
 
-std::ostream& operator<<(std::ostream& out,Form &form);
+std::ostream& operator<<(std::ostream& out, AForm &form);
 
 #endif //CPPMODULES_FORM_HPP

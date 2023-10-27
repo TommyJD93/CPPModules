@@ -148,7 +148,8 @@ void BitcoinExchange::find_date(std::string day)
 		as >> a;
 		std::istringstream bs(it->second);
 		bs >> b;
-        std::cout<<word<<"=>"<<dbword<<" = "<< (a * b)<<std::endl;
+        std::cout.precision(10);
+        std::cout<<word<<"=>"<<dbword<<" = "<< std::fixed << (a * b)<<std::endl;
     }
 }
 

@@ -1,14 +1,12 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
-#include <random>
 #include <iostream>
+#include <cstdlib>
 
 Base *generate(void) {
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> distribution(1,3);
-    int ran = distribution(mt);
+    std::srand(time(0));
+    int ran = std::rand() % 3;
 
     switch (ran)
     {
@@ -59,4 +57,6 @@ int main() {
     identify(base);
     std::cout << "addr identifier: " << std::endl;
     identify(*base);
+
+    delete base;
 }

@@ -16,12 +16,20 @@ AForm::AForm(std::string name, const int req_grade_sign, const int req_grade_exe
     std::cout << "-req_grade_exec: " << _req_grade_exec << std::endl;
 }
 
-AForm::AForm(const AForm &AForm) {
-    *this = AForm;
+AForm &AForm::operator=(const AForm &copy)
+{
+    if (this == &copy)
+        return (*this);
+    _sign = copy._sign;
+    return (*this);
+}
+
+AForm::AForm(const AForm &copy) : _name(copy._name), _sign(copy._sign), _req_grade_sign(copy._req_grade_sign), _req_grade_exec(copy._req_grade_exec)
+{
 }
 
 AForm::~AForm() {
-    std::cout << "Form destructor called" << std::endl;
+    std::cout << "AForm destructor called" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, AForm &Form) {
@@ -55,11 +63,15 @@ void AForm::beSigned(Bureaucrat &bureaucrat) {
         this->_sign = true;
 }
 
-void AForm::permissionCheck(const Bureaucrat &bureaucrat) {
-    if (!this->get_sign())
-        throw FormNotSignedException();
-    if (this->get_grade_exec() > bureaucrat.get_grade())
-        throw FormGradeTooLowException();
+void AForm::permissionCheck(const Bureaucrat &bureaucrat) const {
+    try {
+        if (!this->_sign)
+            throw FormNotSignedException();
+        if (this->_req_grade_exec > bureaucrat.get_grade())
+            throw FormGradeTooLowException();
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 

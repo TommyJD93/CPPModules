@@ -3,7 +3,7 @@
 #include <iostream>
 # include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 private:
@@ -34,7 +34,7 @@ public:
 
 	void decrement_grade(int variation_value);
 	void increment_grade(int variation_value);
-    void singForm(Form &Form);
+    void singForm(AForm &Form);
 };
 
 std::ostream& operator<<(std::ostream& out, Bureaucrat const& bureaucrat);

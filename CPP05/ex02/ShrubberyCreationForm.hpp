@@ -3,6 +3,7 @@
 # include "AForm.hpp"
 # include <fstream>
 
+
 class ShrubberyCreationForm: public AForm{
 private:
     const std::string _file;
@@ -13,8 +14,7 @@ public:
     virtual ~ShrubberyCreationForm();
 
     void execute(const Bureaucrat &bureaucrat) const;
+    ShrubberyCreationForm   &operator=(const ShrubberyCreationForm &shrubbery);
 };
-
-ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &shrubbery);
 
 #endif //SHRUBBERYCREATIONFORM_HPP

@@ -1,19 +1,22 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-int	main(void)
-{
-    Form 		f("BFF", 10, 4);
-    Bureaucrat	bob("Bob", 11);
+int main() {
+    Bureaucrat b1("Bureaucrat1", 1);
+    Bureaucrat b150("Bureaucrat150", 150);
 
-    std::cout << f << std::endl;
-    std::cout << bob << std::endl;
+    ShrubberyCreationForm s1("Shrubbery1");
+    RobotomyRequestForm r1("Robotomy1");
+    PresidentialPardonForm p1("Presidential1");
 
-    bob.singForm(f);
-    bob.increment_grade(1);
-    bob.singForm(f);
+    s1.beSigned(b1);
+    r1.beSigned(b1);
+    p1.beSigned(b1);
 
-    std::cout << std::endl << f << std::endl;
-    return (0);
+    s1.execute(b1);
+    r1.execute(b1);
+    p1.execute(b1);
 }

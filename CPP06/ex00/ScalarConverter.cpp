@@ -140,7 +140,7 @@ int ScalarConverter::_getType(const char *val) {
         return (ScalarConverter::charType);
     if (val[i] == '-' || val[i] == '+')
         i++;
-    while (val[i] && (val[i] => '0' && val[i] <= '9')) {
+    while (val[i] && (val[i] >= '0' && val[i] <= '9')) {
         i++;
         nonNumeric = false;
     }
@@ -254,7 +254,6 @@ void ScalarConverter::convert() {
     if (_checkLimits(this->_input))
         return;
     int type = _getType(this->_input);
-    std::cout << "[debug] type: " << type << std::endl;
     if(type == ScalarConverter::nonScalarType)
         this->_charNotDisplayable = true;
     else
