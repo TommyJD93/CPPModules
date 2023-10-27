@@ -14,11 +14,13 @@ bool    input_check(std::string str) {
     while (++i < str.length()) {
         if (std::isspace(str[i]))
             continue;
-        std::cout << "char: " << str[i] << std::endl;
+//        std::cout << "char: " << str[i] << std::endl;
         if (isdigit(str[i]))
-            std::cout << "num" << std::endl;
+            ;
+//            std::cout << "num" << std::endl;
         else if (op_check(str[i]))
-            std::cout << "op" << std::endl;
+            ;
+//            std::cout << "op" << std::endl;
         else
             return (false);
     }
@@ -35,6 +37,7 @@ int main(int argc, char **argv) {
     } catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
+        exit(0);
     }
     RPN exp = RPN(argv[1]);
     int res;
